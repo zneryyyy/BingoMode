@@ -1903,5 +1903,22 @@ namespace BingoMode.BingoChallenges
                 }
             }
         }
+
+
+        public static void PoleMimic_BeingClimedOn(On.PoleMimic.orig_BeingClimbedOn orig, PoleMimic self, Creature crit)
+        {
+            orig.Invoke(self, crit);
+            if (crit is Player) 
+            {
+                for (int j = 0; j < ExpeditionData.challengeList.Count; j++)
+                {
+                    if (ExpeditionData.challengeList[j] is BingoGrabPoleMimicChallenge c)
+                    {
+                        c.Grabbed();
+                    }
+                }
+            }
+        }
+
     }
 }
